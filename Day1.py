@@ -1,0 +1,5 @@
+print("----------------------")
+print("Hi, I am Simran Nakarmi")
+print("I studied BIM at NCCS")
+print("I am starting this 100 Days Coding Challenge.")
+print("----------------------")
