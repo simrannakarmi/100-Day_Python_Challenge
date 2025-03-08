@@ -1,4 +1,5 @@
 import pickle
+import os
 
 def add_contact():
     name = input("Enter Name: ")
@@ -20,6 +21,70 @@ def display():
     except:
         f.close()
         
+def search():
+    name = input("Enter name to be searched: ")
+    f = open("contacts.dat", "rb")
+    print("-" * 30)
+    n = 0
+    print("Name\t\tContact")
+    try:
+        while True:
+            data = pickle.load(f)
+            if data[0] == name:
+                print(data[0]+"\t\t"+data[1])
+                n+=1
+    except:
+        if n == 0:
+            print("No Such Contact Found")
+        f.close()
+
+def update_contact():
+    name = input("Enter name to be updated: ")
+    f = open("contacts.dat", "rb")
+    g = open("temp.dat", "wb")
+    print("-" * 30)
+    n = 0
+    print("Name\t\tContact")
+    try:
+        while True:
+            data = pickle.load(f)
+            if data[0] == name:
+                print(data[0]+"\t\t"+data[1])
+                phone = input("Enter the modified phone number: ")
+                data[1] = phone
+                n+=1
+            pickle.dump(data, g)
+    except:
+        f.close()
+        g.close()
+        if n == 0:
+            print("No Such Contact Found")
+        else:
+            os.remove("contacts.dat")
+            os.rename("temp.dat", "contacts.dat")
+
+def delete_contact():
+    name = input("Enter name to be deleted: ")
+    f = open("contacts.dat", "rb")
+    g = open("temp.dat", "wb")
+    print("-" * 30)
+    n = 0
+    print("Name\t\tContact")
+    try:
+        while True:
+            data = pickle.load(f)
+            if data[0] == name:
+                print("Deleted Record " + data[0]+"\t\t"+data[1])
+                n+=1
+            pickle.dump(data, g)
+    except:
+        f.close()
+        g.close()
+        if n == 0:
+            print("No Such Contact Found")
+        else:
+            os.remove("contacts.dat")
+            os.rename("temp.dat", "contacts.dat")
 
 while True:
     print("-" * 30)
