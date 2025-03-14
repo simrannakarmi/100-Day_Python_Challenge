@@ -9,9 +9,9 @@ for ch in word:
                 print("It is difficult to pronounce")
                 break
         else:
-            c == 0
+            c = 0
     else:
         print("Invalid Input")
         break
 else:
-        print("It is easy to pronounce")
+    print("It is easy to pronounce")
